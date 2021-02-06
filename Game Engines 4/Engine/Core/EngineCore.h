@@ -3,6 +3,10 @@
 
 #include "Window.h"
 #include <memory>
+#include "Timer.h"
+#include "Debug.h"
+#include "GameInterface.h"
+#include "Scene.h"
 
 class EngineCore
 {
@@ -16,7 +20,13 @@ public:
 
 	bool OnCreate(std::string name_, int width_, int height_);
 	void Run();
+	void Exit();
+
 	bool GetIsRunning();
+	int GetCurrentScene() const;
+
+	void SetGameInterface(GameInterface* gameInterface_);
+	void SetCurrentScene(int sceneNum_);
 
 private:
 	EngineCore();
@@ -29,7 +39,14 @@ private:
 	friend std::default_delete<EngineCore>;
 
 	Window* window;
-	bool isRunnig;
+	bool isRunning;
+
+	Timer timer;
+	unsigned int fps;
+
+	GameInterface* gameInterface;
+
+	int currentSceneNum;
 };
 
 #endif // !ENGINECORE_H

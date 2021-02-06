@@ -79,6 +79,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\GameDev\SDL\include;C:\GameDev\OpenGL\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -123,6 +124,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\GameDev\SDL\lib;C:\GameDev\OpenGL\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;glew32.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,13 +145,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Core\Debug.cpp" />
     <ClCompile Include="Engine\Core\EngineCore.cpp" />
+    <ClCompile Include="Engine\Core\Timer.cpp" />
+    <ClCompile Include="Game\Scenes\GameScene.cpp" />
+    <ClCompile Include="Game\Game1.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Engine\Core\Window.cpp" />
+    <ClCompile Include="Game\Scenes\StartScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Core\Debug.h" />
     <ClInclude Include="Engine\Core\EngineCore.h" />
+    <ClInclude Include="Engine\Core\Scene.h" />
+    <ClInclude Include="Engine\Core\Timer.h" />
     <ClInclude Include="Engine\Core\Window.h" />
+    <ClInclude Include="Engine\Core\GameInterface.h" />
+    <ClInclude Include="Game\Scenes\GameScene.h" />
+    <ClInclude Include="Game\Game1.h" />
+    <ClInclude Include="Game\Scenes\StartScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

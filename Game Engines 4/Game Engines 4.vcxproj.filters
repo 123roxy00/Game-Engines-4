@@ -10,6 +10,11 @@
     <ClCompile Include="Engine\Core\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Core\Timer.cpp" />
+    <ClCompile Include="Engine\Core\Debug.cpp" />
+    <ClCompile Include="Game\Game1.cpp" />
+    <ClCompile Include="Game\Scenes\StartScene.cpp" />
+    <ClCompile Include="Game\Scenes\GameScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\EngineCore.h">
@@ -18,6 +23,13 @@
     <ClInclude Include="Engine\Core\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Core\Timer.h" />
+    <ClInclude Include="Engine\Core\Debug.h" />
+    <ClInclude Include="Engine\Core\GameInterface.h" />
+    <ClInclude Include="Game\Game1.h" />
+    <ClInclude Include="Engine\Core\Scene.h" />
+    <ClInclude Include="Game\Scenes\StartScene.h" />
+    <ClInclude Include="Game\Scenes\GameScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
