@@ -17,7 +17,7 @@ bool GameScene::OnCreate()
 
 	Vertex v;
 	std::vector<Vertex> vertexList;
-	vertexList.reserve(3);
+	vertexList.reserve(6);
 	v.position = glm::vec3(-0.5f, 0.5f, 0.0f);
 	vertexList.push_back(v);
 	v.position = glm::vec3(-0.5f, -0.5f, 0.0f);
