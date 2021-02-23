@@ -18,6 +18,7 @@
     <ClCompile Include="Engine\Rendering\3D\GameObject.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Model.cpp" />
     <ClCompile Include="Engine\Rendering\3D\Mesh.cpp" />
+    <ClCompile Include="Engine\Graphics\ShaderHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\EngineCore.h">
@@ -36,6 +37,7 @@
     <ClInclude Include="Engine\Rendering\3D\GameObject.h" />
     <ClInclude Include="Engine\Rendering\3D\Model.h" />
     <ClInclude Include="Engine\Rendering\3D\Mesh.h" />
+    <ClInclude Include="Engine\Graphics\ShaderHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -47,5 +49,9 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{61b691ff-66c0-41c6-a59a-a4736c532231}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Engine\Shaders\ColourFragmentShader.glsl" />
+    <None Include="Engine\Shaders\ColourVertexShader.glsl" />
   </ItemGroup>
 </Project>

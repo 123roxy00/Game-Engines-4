@@ -35,6 +35,10 @@ bool EngineCore::OnCreate(std::string name_, int width_, int height_)
 		return false;
 	}
 
+	ShaderHandler::GetInstance()->CreateProgram("colourShader",
+		"Engine/Shaders/ColourVertexShader.glsl", 
+		"Engine/Shaders/ColourFragmentShader.glsl");
+
 	if (gameInterface)
 		if (gameInterface->OnCreate() == false)
 		{
@@ -104,6 +108,8 @@ void EngineCore::Render()
 
 void EngineCore::OnDestroy()
 {
+	ShaderHandler::GetInstance()->OnDestroy();
+
 	delete gameInterface;
 	gameInterface = nullptr;
 
