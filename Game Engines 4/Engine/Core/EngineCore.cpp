@@ -78,6 +78,21 @@ int EngineCore::GetCurrentScene() const
 	return currentSceneNum;
 }
 
+float EngineCore::GetScreenWidth() const
+{
+	return static_cast<float>(window->GetWidth());
+}
+
+float EngineCore::GetScreenHeight() const
+{
+	return static_cast<float>(window->GetHeight());
+}
+
+Camera* EngineCore::GetCamera() const
+{
+	return camera;
+}
+
 void EngineCore::SetGameInterface(GameInterface* gameInterface_)
 {
 	gameInterface = gameInterface_;
@@ -86,6 +101,11 @@ void EngineCore::SetGameInterface(GameInterface* gameInterface_)
 void EngineCore::SetCurrentScene(int sceneNum_)
 {
 	currentSceneNum = sceneNum_;
+}
+
+void EngineCore::SetCamera(Camera* camera_)
+{
+	camera = camera_;
 }
 
 void EngineCore::Update(const float deltaTime_)
@@ -112,6 +132,9 @@ void EngineCore::OnDestroy()
 
 	delete gameInterface;
 	gameInterface = nullptr;
+
+	delete camera;
+	camera = nullptr;
 
 	delete window;
 	window = nullptr;

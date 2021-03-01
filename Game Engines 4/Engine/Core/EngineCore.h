@@ -12,6 +12,8 @@
 
 #include "../Graphics/ShaderHandler.h"
 
+#include "../Camera/Camera.h"
+
 class EngineCore
 {
 public:
@@ -28,9 +30,13 @@ public:
 
 	bool GetIsRunning();
 	int GetCurrentScene() const;
+	float GetScreenWidth() const;
+	float GetScreenHeight() const;
+	Camera* GetCamera() const;
 
 	void SetGameInterface(GameInterface* gameInterface_);
 	void SetCurrentScene(int sceneNum_);
+	void SetCamera(Camera* camera_);
 
 private:
 	EngineCore();
@@ -51,6 +57,8 @@ private:
 	GameInterface* gameInterface;
 
 	int currentSceneNum;
+
+	Camera* camera;
 };
 
 #endif // !ENGINECORE_H
