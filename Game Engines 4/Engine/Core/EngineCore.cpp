@@ -39,6 +39,10 @@ bool EngineCore::OnCreate(std::string name_, int width_, int height_)
 		"Engine/Shaders/ColourVertexShader.glsl", 
 		"Engine/Shaders/ColourFragmentShader.glsl");
 
+	ShaderHandler::GetInstance()->CreateProgram("basicShader",
+		"Engine/Shaders/VertexShader.glsl",
+		"Engine/Shaders/FragmentShader.glsl");
+
 	if (gameInterface)
 		if (gameInterface->OnCreate() == false)
 		{
@@ -113,13 +117,12 @@ void EngineCore::Update(const float deltaTime_)
 	if (gameInterface)
 	{
 		gameInterface->Update(deltaTime_);
-		std::cout << deltaTime_ << std::endl;
 	}
 }
 
 void EngineCore::Render()
 {
-	glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	if (gameInterface)
 		gameInterface->Render();
@@ -129,6 +132,7 @@ void EngineCore::Render()
 void EngineCore::OnDestroy()
 {
 	ShaderHandler::GetInstance()->OnDestroy();
+	TextureHandler::GetInstance()->OnDestroy();
 
 	delete gameInterface;
 	gameInterface = nullptr;
