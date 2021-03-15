@@ -29,7 +29,7 @@ public:
 
 	void CreateTexture(const std::string& textureName_,
 		const std::string& textureFilePath_);
-	const GLuint GetTexture(const std::string textureName_);
+	const GLuint GetTexture(const std::string& textureName_);
 	const Texture* GetTextureData(const std::string textureName_);
 private:
 	TextureHandler();

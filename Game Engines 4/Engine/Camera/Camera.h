@@ -1,8 +1,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#include <vector>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include "../FX/LightSource.h"
 
 class Camera
 {
@@ -17,6 +19,10 @@ public:
 	glm::mat4 GetPerspective() const;
 	glm::mat4 GetOrthographic() const;
 	glm::vec3 GetPosition() const;
+	std::vector<LightSource*> GetLightSources();
+
+	void AddLightSource(glm::vec3 position_, float ambient_, float diffuse_,
+		float specular_, glm::vec3 lColour_);
 
 private:
 	void UpdateCameraVectors();
@@ -26,6 +32,8 @@ private:
 	float yaw, pitch;
 	float nearPlane, farPlane;
 	glm::vec3 forward, up, right, worldUp;
+
+	std::vector<LightSource*> lightSources;
 };
 
 #endif // CAMERA_H

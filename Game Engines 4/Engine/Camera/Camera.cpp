@@ -27,6 +27,7 @@ Camera::Camera() : position(glm::vec3()), fieldOfView(0.0f), forward(glm::vec3()
 
 Camera::~Camera()
 {
+	lightSources.clear();
 }
 
 void Camera::SetPosition(glm::vec3 position_)
@@ -75,4 +76,23 @@ void Camera::UpdateCameraVectors()
 	up = glm::normalize(glm::cross(right, forward));
 
 	view = glm::lookAt(position, position + forward, up);
+}
+
+std::vector<LightSource*> Camera::GetLightSources()
+{
+	return lightSources;
+}
+
+void Camera::AddLightSource(glm::vec3 position_, float ambient_, float diffuse_,
+	float specular_, glm::vec3 lColour_)
+{
+	LightSource* l = new LightSource;
+
+	l->SetPosition(position_);
+	l->SetAmbient(ambient_);
+	l->SetDiffuse(diffuse_);
+	l->SetSpecular(specular_);
+	l->SetLColour(lColour_);
+
+	lightSources.push_back(l);
 }

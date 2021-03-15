@@ -44,12 +44,14 @@ bool EngineCore::OnCreate(std::string name_, int width_, int height_)
 		"Engine/Shaders/FragmentShader.glsl");
 
 	if (gameInterface)
+	{
 		if (gameInterface->OnCreate() == false)
 		{
 			Debug::FatalError("Game failed to initialize", __FILE__, __LINE__);
 			OnDestroy();
 			return isRunning = false;
 		}
+	}
 
 	Debug::Info("Working as intended", __FILE__, __LINE__);
 	timer.Start();

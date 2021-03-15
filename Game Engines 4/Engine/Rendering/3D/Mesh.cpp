@@ -2,7 +2,8 @@
 
 Mesh::Mesh(std::vector<Vertex>& vertexList_, GLuint textureID_, GLuint shaderProgram_) : VAO(0), VBO(0), vertexList(std::vector<Vertex>()), 
 																	  shaderProgram(0), textureID(0), modelLoc(0), viewLoc(0), projectionLoc(0), 
-																	  textureLoc(0)
+																	  textureLoc(0), viewPos(0), lightPos(0), lightAmb(0), lightDiff(0), 
+																	  lightSpec(0), lightCol(0)
 {
 	vertexList = vertexList_;
 	shaderProgram = shaderProgram_;
@@ -24,7 +25,13 @@ void Mesh::Render(Camera* camera_, glm::mat4 transform_)
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureID);
 
-	
+	glUniform3fv(viewPosLoc, 1, glm::value_ptr(camera_->GetPosition()));
+	glUniform3fv(lightPosLoc, 1, glm::value_ptr(camera_->GetLightSources()[0]->GetPosition()));
+	glUniform1f(lightAmbLoc, camera_->GetLightSources()[0]->GetAmbient());
+	glUniform1f(lightDiffLoc, camera_->GetLightSources()[0]->GetDiffuse());
+	glUniform1f(lightSpecLoc, camera_->GetLightSources()[0]->GetSpecular());
+	glUniform3fv(lightColLoc, 1, glm::value_ptr(camera_->GetLightSources()[0]->GetLColour()));
+
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(camera_->GetView()));
 	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(camera_->GetPerspective()));
 
@@ -67,4 +74,10 @@ void Mesh::GenerateBuffers()
 	viewLoc = glGetUniformLocation(shaderProgram, "view");
 	projectionLoc = glGetUniformLocation(shaderProgram, "projection");
 	textureLoc = glGetUniformLocation(shaderProgram, "inputTexture");
+	viewPosLoc = glGetUniformLocation(shaderProgram, "viewPosition");
+	lightPosLoc = glGetUniformLocation(shaderProgram, "light.Position");
+	lightAmbLoc = glGetUniformLocation(shaderProgram, "light.Ambient");
+	lightDiffLoc = glGetUniformLocation(shaderProgram, "light.Diffuse");
+	lightSpecLoc = glGetUniformLocation(shaderProgram, "light.Specular");
+	lightColLoc = glGetUniformLocation(shaderProgram, "light.Colour");
 }

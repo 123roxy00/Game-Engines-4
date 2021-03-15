@@ -21,6 +21,7 @@
     <ClCompile Include="Engine\Graphics\ShaderHandler.cpp" />
     <ClCompile Include="Engine\Camera\Camera.cpp" />
     <ClCompile Include="Engine\Graphics\TextureHandler.cpp" />
+    <ClCompile Include="Engine\FX\LightSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\EngineCore.h">
@@ -42,6 +43,7 @@
     <ClInclude Include="Engine\Graphics\ShaderHandler.h" />
     <ClInclude Include="Engine\Camera\Camera.h" />
     <ClInclude Include="Engine\Graphics\TextureHandler.h" />
+    <ClInclude Include="Engine\FX\LightSource.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
