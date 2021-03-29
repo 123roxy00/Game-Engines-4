@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html data-ng-app="ally" class="ng-scope" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TODO">
+    <meta name="author" content="Fronteer Ltd">
+    <link rel="icon" href="https://prod-ca-central-1.ally.ac/favicon.ico">
+
+    <title translate="ALTERNATIVE_FORMATS" class="ng-scope">Alternative formats</title>
+<link rel="shortcut icon" href="https://prod-ca-central-1.ally.ac/favicon.ico"><link href="accessibleversions_data/vendorsaccessibleversions.css" rel="stylesheet"><link href="accessibleversions_data/accessibleversions.css" rel="stylesheet"></head>
+
+<body data-ng-controller="AccessibleVersionsController" data-ng-class="{
+    'ally-av-lms-canvas': platformName === 'canvas',
+    'ally-av-lms-d2l': platformName === 'd2l',
+    'ally-av-lms-learn': platformName === 'learn',
+    'ally-av-lms-moodle': platformName === 'moodle',
+    'ally-av-lms-wcm': platformName === 'Wcm',
+    'ally-av-lms-web': platformName === 'web',
+    'ally-av-platform-ui-bbmobile': platformUi === 'bbmobile'
+}" dir="ltr" class="ng-scope ally-av-lms-learn">
+    <div data-ng-keydown="keydown($event)">
+        <div class="ally-av-mask"></div>
+        <div data-ally-tab-start="ally-av" tabindex="0" aria-hidden="true"></div>
+        <!-- The modal is skinned depending on the LMS its embedded in. To avoid a flickering transition between the
+             default style and the LMS its skin, the modal is only rendered, when the LMS type is known. -->
+        <!-- ngIf: platformName --><div class="modal ally-av-modal ng-scope" role="dialog" data-ally-tab="ally-av" aria-labelledby="ally-av-modal-title" aria-describedby="ally-av-modal-title" data-ng-if="platformName">
+            <div class="modal-dialog">
+                <!-- ALT FORMATS MODAL -->
+
+                <!-- Loading spinner -->
+                <!-- ngIf: modalView === 'loading' -->
+
+                <!-- Link list for a web page -->
+                <!-- ngIf: modalView === 'pageWithFileLinks' -->
+
+                <!-- Download options for a file -->
+                <!-- ngIf: modalView === 'downloadOptions' || modalView === 'libraryReference' -->
+
+                <!--  CUSTOM HELP MODAL -->
+                <!-- ngIf: modalView === 'customHelp' -->
+
+                <!-- TERMS OF USE MODAL -->
+                <!-- ngIf: modalView === 'termsOfUse' -->
+
+                <!-- DISABLED STATE MODAL -->
+                <!-- ngIf: modalView === 'aafsDisabled' -->
+            </div>
+        </div><!-- end ngIf: platformName -->
+        <div data-ally-tab-end="ally-av" tabindex="0" aria-hidden="true"></div>
+    </div>
+<script type="text/javascript" src="accessibleversions_data/vendorsaccessibleversions.js"></script><script type="text/javascript" src="accessibleversions_data/accessibleversions.js"></script>
+
+</body></html>

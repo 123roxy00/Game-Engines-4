@@ -1,9 +1,8 @@
 #include "Window.h"
 
-Window::Window()
+Window::Window() : window(nullptr), context(nullptr)
 {
-	window = nullptr;
-	context = nullptr;
+
 }
 
 Window::~Window()

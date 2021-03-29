@@ -1,13 +1,12 @@
 #include "Mesh.h"
 
-Mesh::Mesh(std::vector<Vertex>& vertexList_, GLuint textureID_, GLuint shaderProgram_) : VAO(0), VBO(0), vertexList(std::vector<Vertex>()), 
-																	  shaderProgram(0), textureID(0), modelLoc(0), viewLoc(0), projectionLoc(0), 
-																	  textureLoc(0), viewPos(0), lightPos(0), lightAmb(0), lightDiff(0), 
-																	  lightSpec(0), lightCol(0)
+Mesh::Mesh(SubMesh& subMesh_, GLuint shaderProgram_) : VAO(0), 
+VBO(0), shaderProgram(0), modelLoc(0), viewLoc(0), projectionLoc(0), 
+textureLoc(0), viewPosLoc(0), lightPosLoc(0), lightAmbLoc(0),
+lightDiffLoc(0), lightSpecLoc(0), lightColLoc(0)
 {
-	vertexList = vertexList_;
+	subMesh = subMesh_;
 	shaderProgram = shaderProgram_;
-	textureID = textureID_;
 	GenerateBuffers();
 }
 
@@ -16,14 +15,18 @@ Mesh::~Mesh()
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 
-	vertexList.clear();
+	if (subMesh.vertexList.size() > 0)
+		subMesh.vertexList.clear();
+
+	if (subMesh.meshIndices.size() > 0)
+		subMesh.meshIndices.clear();
 }
 
-void Mesh::Render(Camera* camera_, glm::mat4 transform_)
+void Mesh::Render(Camera* camera_, std::vector<glm::mat4>& instances_)
 {
 	glUniform1i(textureLoc, 0);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, textureID);
+	glBindTexture(GL_TEXTURE_2D, subMesh.textureID);
 
 	glUniform3fv(viewPosLoc, 1, glm::value_ptr(camera_->GetPosition()));
 	glUniform3fv(lightPosLoc, 1, glm::value_ptr(camera_->GetLightSources()[0]->GetPosition()));
@@ -39,11 +42,14 @@ void Mesh::Render(Camera* camera_, glm::mat4 transform_)
 
 	glEnable(GL_DEPTH_TEST);
 
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(transform_));
-	
-	glDrawArrays(GL_TRIANGLES, 0, vertexList.size());
+	for (int i = 0; i < instances_.size(); i++)
+	{
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(instances_[i]));
+		glDrawArrays(GL_TRIANGLES, 0, subMesh.vertexList.size());
+	}
 
 	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Mesh::GenerateBuffers()
@@ -52,7 +58,7 @@ void Mesh::GenerateBuffers()
 	glGenBuffers(1, &VBO);
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, vertexList.size() * sizeof(Vertex), &vertexList[0], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, subMesh.vertexList.size() * sizeof(Vertex), &subMesh.vertexList[0], GL_STATIC_DRAW);
 	
 	//Position
 	glEnableVertexAttribArray(0);
