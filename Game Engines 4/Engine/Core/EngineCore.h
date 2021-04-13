@@ -17,6 +17,8 @@
 
 #include "../Camera/Camera.h"
 
+#include "../Events/EventListener.h"
+
 class EngineCore
 {
 public:
@@ -41,6 +43,11 @@ public:
 	void SetCurrentScene(int sceneNum_);
 	void SetCamera(Camera* camera_);
 
+	void NotifyOfMousePressed(glm::ivec2 mouse_, int buttonType_);
+	void NotifyOfMouseReleased(glm::ivec2 mouse_, int buttonType_);
+	void NotifyOfMouseMove(glm::ivec2 mouse_);
+	void NotifyOfMouseScroll(int y_);
+
 private:
 	EngineCore();
 	~EngineCore();
@@ -54,7 +61,7 @@ private:
 	Window* window;
 	bool isRunning;
 
-	Timer timer;
+	Timer* timer;
 	unsigned int fps;
 
 	GameInterface* gameInterface;

@@ -17,11 +17,6 @@ public:
 	LightSource();
 	~LightSource();
 
-	LightSource(const LightSource&) = delete;
-	LightSource(LightSource&&) = delete;
-	LightSource& operator=(const LightSource&) = delete;
-	LightSource& operator=(LightSource&&) = delete;
-
 	const glm::vec3 GetPosition() { return position; }
 	const glm::vec3 GetLColour() { return lColour; }
 	const float GetAmbient() { return ambient; }
@@ -35,4 +30,4 @@ public:
 	void SetSpecular(float specular_);
 };
 
-#endif // !
+#endif // LIGHTSOURCE_H

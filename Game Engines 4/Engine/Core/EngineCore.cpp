@@ -28,12 +28,16 @@ bool EngineCore::OnCreate(std::string name_, int width_, int height_)
 {
 	Debug::OnCreate();
 	window = new Window();
-	if (window->OnCreate(name_, width_, height_) == false)
+	if (!window->OnCreate(name_, width_, height_))
 	{
 		Debug::FatalError("Failed to create window", __FILE__, __LINE__);
 		OnDestroy();
-		return false;
+		return isRunning = false;
 	}
+
+	SDL_WarpMouseInWindow(window->GetWindow(), window->GetWidth() / 2, window->GetHeight() / 2);
+
+	MouseEventListener::RegisterEngineObject(this);
 
 	ShaderHandler::GetInstance()->CreateProgram("colourShader",
 		"Engine/Shaders/ColourVertexShader.glsl", 
@@ -45,16 +49,17 @@ bool EngineCore::OnCreate(std::string name_, int width_, int height_)
 
 	if (gameInterface)
 	{
-		if (gameInterface->OnCreate() == false)
+		if (!gameInterface->OnCreate())
 		{
-			Debug::FatalError("Game failed to initialize", __FILE__, __LINE__);
+			Debug::FatalError("Game failed to initialize", "EngineCore.cpp", __LINE__);
 			OnDestroy();
 			return isRunning = false;
 		}
 	}
 
-	Debug::Info("Working as intended", __FILE__, __LINE__);
-	timer.Start();
+	Debug::Info("Working as intended", "EngineCore.cpp", __LINE__);
+	timer = new Timer();
+	timer->Start();
 	return isRunning = true;
 }
 
@@ -62,10 +67,11 @@ void EngineCore::Run()
 {
 	while (isRunning)
 	{
-		timer.UpdateFrameTicks();
-		Update(timer.GetDeltaTime());
+		timer->UpdateFrameTicks();
+		EventListener::Update();
+		Update(timer->GetDeltaTime());
 		Render();
-		SDL_Delay(timer.GetSleepTime(fps));
+		SDL_Delay(timer->GetSleepTime(fps));
 	}
 }
 
@@ -144,9 +150,34 @@ void EngineCore::OnDestroy()
 	delete camera;
 	camera = nullptr;
 
+	delete timer;
+	timer = nullptr;
+
 	delete window;
 	window = nullptr;
 
 	SDL_Quit();
 	exit(0);
+}
+
+void EngineCore::NotifyOfMousePressed(glm::ivec2 mouse_, int buttonType_)
+{
+
+}
+
+void EngineCore::NotifyOfMouseReleased(glm::ivec2 mouse_, int buttonType_)
+{
+
+}
+
+void EngineCore::NotifyOfMouseMove(glm::ivec2 mouse_)
+{
+	if (camera)
+		camera->ProcessMouseMovement(MouseEventListener::GetMouseOffset());
+}
+
+void EngineCore::NotifyOfMouseScroll(int y_)
+{
+	if (camera)
+		camera->ProcessMouseZoom(y_);
 }

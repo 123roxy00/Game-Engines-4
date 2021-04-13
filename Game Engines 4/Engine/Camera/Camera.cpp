@@ -96,3 +96,31 @@ void Camera::AddLightSource(glm::vec3 position_, float ambient_, float diffuse_,
 
 	lightSources.push_back(l);
 }
+
+void Camera::ProcessMouseMovement(glm::vec2 offset_)
+{
+	offset_ *= 0.05f;
+
+	yaw += offset_.x;
+	pitch += offset_.y;
+
+	if (pitch > 89.0f)
+		pitch = 89.0f;
+	if (pitch < -89.0f)
+		pitch = -89.0f;
+
+	if (yaw < 0.0f)
+		yaw += 360.0f;
+	if (yaw > 360.0f)
+		yaw -= 360.0f;
+
+	UpdateCameraVectors();
+}
+
+void Camera::ProcessMouseZoom(int y_)
+{
+	if (y_ < 0 || y_ > 0)
+		position += static_cast<float>(y_) * (forward * 2.0f);
+
+	UpdateCameraVectors();
+}

@@ -24,6 +24,8 @@ public:
 	void AddLightSource(glm::vec3 position_, float ambient_, float diffuse_,
 		float specular_, glm::vec3 lColour_);
 
+	void ProcessMouseMovement(glm::vec2 offset_);
+	void ProcessMouseZoom(int y_);
 private:
 	void UpdateCameraVectors();
 	glm::vec3 position;

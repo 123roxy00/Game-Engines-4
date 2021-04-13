@@ -59,7 +59,6 @@ void SceneGraph::AddModel(Model* model_)
 	{
 		sceneModels.insert(std::pair<GLuint, std::vector<Model*>>(shader, std::vector<Model*>()));
 		sceneModels[shader].reserve(10);
-		sceneModels[shader].push_back(model_);
 	}
 	sceneModels[shader].push_back(model_);
 }

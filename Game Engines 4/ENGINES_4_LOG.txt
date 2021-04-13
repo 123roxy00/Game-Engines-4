@@ -1,3 +1,3 @@
 [Info]: Start scene in: C:\Users\123jo\source\repos\Game Engines 4\Game Engines 4\Game\Scenes\StartScene.cpp on line: 15
-[Info]: Working as intended in: C:\Users\123jo\source\repos\Game Engines 4\Game Engines 4\Engine\Core\EngineCore.cpp on line: 56
+[Info]: Working as intended in: EngineCore.cpp on line: 60
 [Info]: Game scene in: C:\Users\123jo\source\repos\Game Engines 4\Game Engines 4\Game\Scenes\GameScene.cpp on line: 14

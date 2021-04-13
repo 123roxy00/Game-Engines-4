@@ -45,7 +45,7 @@ void MaterialLoader::LoadMaterial(std::string filePath_)
 			std::stringstream v(line.substr(3));
 			float x;
 			v >> x;
-			m.shininess = x;
+			m.transparency = x;
 		}
 		// AMBIENT
 		else if (line.substr(0, 4) == "	Ka ")
