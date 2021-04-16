@@ -73,6 +73,7 @@ void EngineCore::Run()
 		Render();
 		SDL_Delay(timer->GetSleepTime(fps));
 	}
+	OnDestroy();
 }
 
 void EngineCore::Exit()
@@ -142,6 +143,7 @@ void EngineCore::OnDestroy()
 	ShaderHandler::GetInstance()->OnDestroy();
 	TextureHandler::GetInstance()->OnDestroy();
 	MaterialHandler::GetInstance()->OnDestroy();
+	CollisionHandler::GetInstance()->OnDestroy();
 	SceneGraph::GetInstance()->OnDestroy();
 
 	delete gameInterface;
@@ -167,7 +169,7 @@ void EngineCore::NotifyOfMousePressed(glm::ivec2 mouse_, int buttonType_)
 
 void EngineCore::NotifyOfMouseReleased(glm::ivec2 mouse_, int buttonType_)
 {
-
+	CollisionHandler::GetInstance()->MouseUpdate(mouse_, buttonType_);
 }
 
 void EngineCore::NotifyOfMouseMove(glm::ivec2 mouse_)

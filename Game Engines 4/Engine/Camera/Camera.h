@@ -20,6 +20,8 @@ public:
 	glm::mat4 GetOrthographic() const;
 	glm::vec3 GetPosition() const;
 	std::vector<LightSource*> GetLightSources();
+	float GetNearPlane() const;
+	float GetFarPlane() const;
 
 	void AddLightSource(glm::vec3 position_, float ambient_, float diffuse_,
 		float specular_, glm::vec3 lColour_);

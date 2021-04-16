@@ -45,8 +45,8 @@ BoundingBox LoadOBJModel::GetBoundingBox() const
 
 void LoadOBJModel::LoadModel(const std::string& filePath_)
 {
-	boundingbox.maxVert = glm::vec3();
-	boundingbox.minVert = glm::vec3();
+	boundingbox.maxVert = glm::vec3(-1000.0f);
+	boundingbox.minVert = glm::vec3(1000.0f);
 
 	std::ifstream in(filePath_.c_str(), std::ios::in);
 	if (!in)
