@@ -30,6 +30,7 @@
     <ClCompile Include="Engine\Events\MouseEventListener.cpp" />
     <ClCompile Include="Engine\Math\CollisionDetection.cpp" />
     <ClCompile Include="Engine\Math\CollisionHandler.cpp" />
+    <ClCompile Include="Engine\Core\OctSpatialPartition.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\EngineCore.h">
@@ -62,6 +63,7 @@
     <ClInclude Include="Engine\Math\Ray.h" />
     <ClInclude Include="Engine\Math\CollisionDetection.h" />
     <ClInclude Include="Engine\Math\CollisionHandler.h" />
+    <ClInclude Include="Engine\Core\OctSpatialPartition.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
